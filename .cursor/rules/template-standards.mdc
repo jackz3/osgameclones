@@ -1,0 +1,53 @@
+# Jinja2 Template Standards
+
+## Template Organization
+- Main templates in [templates/](mdc:templates/) directory
+- Form templates in [templates/forms/](mdc:templates/forms/) directory
+- Use imports to share common functionality between templates
+
+## Template Structure
+- Use `{% import %}` for importing other templates (see [games.html](mdc:templates/games.html))
+- Define reusable macros with `{% macro %}` syntax
+- Use `{%- -%}` for whitespace control
+- Use `{{ }}` for variable output, `{% %}` for control structures
+
+## Key Templates
+- [templates/games.html](mdc:templates/games.html) - Main game listing with macros
+- [templates/video.html](mdc:templates/video.html) - Video rendering utilities
+- [templates/tags.html](mdc:templates/tags.html) - Tag rendering utilities
+- [templates/common.html](mdc:templates/common.html) - Common layout elements
+
+## Data Access Patterns
+- Access site data through `site` context variable
+- Game data available as `game` object with properties:
+  - `game.names` - List of game names
+  - `game.slug` - URL-friendly slug
+  - `game.clones` - List of clone entries
+  - `game.meta` - Metadata about the game
+
+## Filter Usage
+- `normalize` - Normalize text for search indexing
+- `slugify` - Create URL-friendly slugs
+- `e` - HTML escape (markupsafe.escape)
+- `title` - Capitalize words
+- `join` - Join lists with separator
+
+## Macro Patterns
+- Use macros for reusable UI components
+- Pass data explicitly to macros
+- Use descriptive macro names
+- Keep macros focused on single responsibility
+
+## Form Templates
+- Forms generated from YAML schemas using pykwalify-webform
+- Form templates in [templates/forms/](mdc:templates/forms/) directory
+- Static assets for forms in [templates/forms/static/](mdc:templates/forms/static/)
+
+## CSS Classes
+- Use semantic class names
+- Follow BEM methodology where appropriate
+- Use `searchable` class for searchable content
+- Use `new` and `updated` classes for status indicators
+---
+globs: *.html,*.jinja2
+---

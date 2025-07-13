@@ -1,0 +1,54 @@
+# Open Source Game Clones Project Overview
+
+This is the source code for [https://osgameclones.com](https://osgameclones.com), a website that catalogs open source clones and remakes of commercial games.
+
+## Project Structure
+
+### Core Files
+- [render.py](mdc:render.py) - Main build script that generates the static website
+- [_ext.py](mdc:_ext.py) - Data processing and validation logic
+- [pyproject.toml](mdc:pyproject.toml) - Python dependencies and project configuration
+- [Makefile](mdc:Makefile) - Build automation commands
+
+### Data Organization
+- [games/](mdc:games/) - YAML files containing clone/remake game data (alphabetically sorted)
+- [originals/](mdc:originals/) - YAML files containing original game references
+- [schema/](mdc:schema/) - YAML validation schemas for data integrity
+
+### Templates
+- [templates/](mdc:templates/) - Jinja2 HTML templates for website generation
+- [templates/games.html](mdc:templates/games.html) - Main game listing template
+- [templates/forms/](mdc:templates/forms/) - Form templates for adding games
+
+### Static Assets
+- [static/](mdc:static/) - CSS, JavaScript, and image files
+- [templates/forms/static/](mdc:templates/forms/static/) - Form-specific static assets
+
+## Key Concepts
+
+### Game Data Structure
+Each game entry contains:
+- `name` - Game name
+- `originals` - List of original games this clones
+- `type` - remake/clone/official/similar/tool
+- `repo` - Source code repository URL
+- `development` - Development status (complete/very active/active/sporadic/halted)
+- `status` - Playability status (playable/semi-playable/unplayable/N/A)
+- `langs` - Programming languages used
+- `frameworks` - Frameworks/engines used
+- `licenses` - License information
+- `updated` - Last update date
+
+### Build Process
+1. Data is loaded from YAML files in [games/](mdc:games/) and [originals/](mdc:originals/)
+2. [render.py](mdc:render.py) processes the data using [_ext.py](mdc:_ext.py)
+3. Jinja2 templates generate static HTML pages
+4. Output goes to `_build/` directory
+
+### Development Workflow
+- Use `make run` to build the site locally
+- Use `make prod` for production build with minification
+- Use `make docker-build` and `make docker-run` for Docker deployment
+---
+alwaysApply: true
+---

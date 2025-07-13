@@ -1,0 +1,56 @@
+# Data Processing Patterns
+
+## Core Data Structures
+- `Game` dataclass in [_ext.py](mdc:_ext.py) represents a game with metadata
+- `parse_data()` function processes all YAML files and builds site context
+- Data validation happens during parsing with clear error messages
+
+## Data Processing Functions
+
+### Game Data Processing
+- `parse_item()` - Process individual game entries with metadata
+- `parse_items()` - Process collections of games with validation
+- `names()` - Extract game names from data structure
+- `game_name()` - Get primary game name
+
+### Tag Processing
+- `parse_tags()` - Extract and normalize tags from game data
+- `parse_unicode_tag()` - Handle Unicode characters in tags
+- `parse_global_tags()` - Build global tag statistics
+
+### Repository Processing
+- `parse_item()` includes automatic repository badge generation
+- Supports GitHub, GitLab, Codeberg, SourceForge, and archive URLs
+- Generates appropriate icons and badges for each platform
+
+## Validation Patterns
+- Use `validate_with_schema()` for YAML schema validation
+- `show_validation_errors()` displays user-friendly error messages
+- `abort()` function for fatal errors with clear messaging
+- Validate data early in processing pipeline
+
+## Caching Strategy
+- Use `@functools.lru_cache` for expensive operations
+- Cache Jinja2 environment and site context
+- Avoid repeated file I/O operations
+
+## Error Handling
+- Fail fast with clear error messages
+- Validate data structure before processing
+- Use type checking for critical data paths
+- Provide context in error messages
+
+## Data Normalization
+- Use `unidecode` for Unicode normalization
+- Create URL-friendly slugs with `slugify`
+- Normalize text for search indexing
+- Handle multi-language game names
+
+## Performance Considerations
+- Process data once and cache results
+- Use efficient data structures (OrderedDict for sorted tags)
+- Minimize file I/O operations
+- Use natural sorting for game lists
+---
+description: Data processing patterns and utilities for game data
+---

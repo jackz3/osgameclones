@@ -1,0 +1,49 @@
+# Build and Deployment Standards
+
+## Local Development
+- Use `make run` to build the site locally
+- Output goes to `_build/` directory
+- Use `make min` to minify HTML for production
+
+## Production Build
+- Use `make prod` for complete production build
+- Includes dependency installation, build, and minification
+- Use `make ci` for CI/CD pipeline builds
+
+## Docker Deployment
+- Build Docker image: `make docker-build`
+- Run container: `make docker-run`
+- Set PORT environment variable to customize port (default: 80)
+- Example: `make docker-run PORT=3000`
+
+## Build Process
+1. Install dependencies via Poetry: `poetry install`
+2. Run [render.py](mdc:render.py) to generate static site
+3. Copy static assets to `_build/static/`
+4. Generate game pages in `_build/{game-slug}/index.html`
+5. Generate JSON data files for forms
+6. Create add game forms from schemas
+
+## File Structure
+- Source files in project root
+- Generated files in `_build/` directory
+- Static assets copied to `_build/static/`
+- Game pages in `_build/{slug}/index.html`
+- Form data in `_build/_clones/` and `_build/_add_form/`
+
+## Environment Variables
+- `PORT` - Docker container port (default: 80)
+- Python path managed by Poetry
+
+## Dependencies
+- Managed via Poetry in [pyproject.toml](mdc:pyproject.toml)
+- Install with: `poetry install`
+- Development dependencies in `[tool.poetry.group.dev.dependencies]`
+
+## Validation
+- YAML data validated against schemas in [schema/](mdc:schema/)
+- Validation errors shown during build process
+- Use `yamllint` for YAML formatting checks
+---
+description: Build and deployment workflow for OSGC project
+---

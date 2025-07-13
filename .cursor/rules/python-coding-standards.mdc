@@ -1,0 +1,39 @@
+# Python Coding Standards
+
+## Code Style
+- Use Python 3.12+ features and syntax
+- Follow PEP 8 style guidelines
+- Use type hints where appropriate
+- Use dataclasses for structured data (see [Game](mdc:_ext.py) class in [_ext.py](mdc:_ext.py))
+
+## Project Structure
+- Main entry point: [render.py](mdc:render.py)
+- Data processing: [_ext.py](mdc:_ext.py)
+- Dependencies managed via Poetry in [pyproject.toml](mdc:pyproject.toml)
+
+## Key Dependencies
+- `jinja2` - Template rendering
+- `pykwalify` - YAML schema validation
+- `pykwalify-webform` - Form generation
+- `natsort` - Natural sorting
+- `slugify` - URL-friendly slugs
+- `unidecode` - Unicode normalization
+
+## Data Processing Patterns
+- Use `@functools.lru_cache` for expensive operations (see [env()](mdc:render.py) and [ctx()](mdc:render.py))
+- Validate YAML data against schemas in [schema/](mdc:schema/)
+- Process game data through [_ext.py](mdc:_ext.py) functions
+- Use dataclasses for structured data representation
+
+## Error Handling
+- Use `abort()` function from [_ext.py](mdc:_ext.py) for fatal errors
+- Validate data early and fail fast
+- Provide clear error messages for data validation issues
+
+## File Organization
+- Keep data processing logic in [_ext.py](mdc:_ext.py)
+- Keep build orchestration in [render.py](mdc:render.py)
+- Use separate modules for different concerns
+---
+globs: *.py
+---

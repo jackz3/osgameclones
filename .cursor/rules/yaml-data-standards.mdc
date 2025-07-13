@@ -1,0 +1,50 @@
+# YAML Data Standards
+
+## File Organization
+- Game data files in [games/](mdc:games/) directory (alphabetically sorted)
+- Original game data files in [originals/](mdc:originals/) directory
+- Schema validation files in [schema/](mdc:schema/) directory
+
+## Game Data Structure
+Each game entry must follow the schema defined in [schema/games.yaml](mdc:schema/games.yaml):
+
+### Required Fields
+- `name` - String name of the clone
+- `originals` - List of original game names this clones
+- `type` - One of: remake, clone, official, similar, tool
+- `status` - One of: playable, semi-playable, unplayable, N/A
+- `updated` - Date in YYYY-MM-DD format
+
+### Optional Fields
+- `repo` - Source code repository URL
+- `url` - Game's main website URL
+- `development` - Development status (complete/very active/active/sporadic/halted)
+- `langs` - List of programming languages
+- `frameworks` - List of frameworks/engines used
+- `licenses` - List of license codes (see schema for valid options)
+- `info` - Additional information text
+- `images` - List of HTTPS image URLs
+- `video` - Video information (youtube/vimeo/moddb/indiedb)
+
+## Data Validation
+- All data is validated against schemas in [schema/](mdc:schema/)
+- Use [pykwalify](https://github.com/Grokzen/pykwalify) for validation
+- Validation errors are shown during build process
+
+## Naming Conventions
+- Game names should be normalized and consistent
+- Use proper capitalization for game titles
+- Repository URLs should be HTTPS when possible
+- Image URLs must be HTTPS only
+
+## Date Formatting
+- Use YYYY-MM-DD format for all dates
+- `added` field for when game was first added to database
+- `updated` field for when entry was last modified
+
+## Multiplayer Information
+- Use `multiplayer` field for games with multiplayer features
+- Valid values: Competitive, Local, Online, LAN, Split-screen, Co-op, Hotseat, Matchmaking
+---
+globs: *.yaml
+---
